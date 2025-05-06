@@ -33,7 +33,7 @@ class Agent(object):
         self.action_space = gym.spaces.Discrete(12)
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.net = QNet(state_size=self.stack , action_size=self.action_space.n).to(self.device)
-        self.net.load_state_dict(torch.load("checkpoints/mario_dqn12_ep390.pth"))
+        self.net.load_state_dict(torch.load("checkpoints/mario_dqn12_ep390.pth"),  map_location=torch.device('cpu'))
         self.net.eval()
         # self.action_step = -1
         # self.action = self.action_space.sample()
